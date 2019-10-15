@@ -5,6 +5,15 @@ The provider needs to be configured with the proper credentials before it can be
 
 ## Installation
 
+### Docker
+
+require
+* docker
+
+````bash
+./install.sh
+````
+
 ### Goland
 
 require
@@ -23,13 +32,11 @@ https://www.terraform.io/docs/configuration/providers.html#third-party-plugins
 go build -o ~/.terraform.d/plugins/terraform-provider-algolia;
 ````
 
-### Docker
-
-require
-* docker
+if you want a versioning of terraform provider. 
 
 ````bash
-./install.sh
+git checkout {version}
+go build -o ~/.terraform.d/plugins/terraform-provider-algolia_{version};
 ````
 
 ## Authentication

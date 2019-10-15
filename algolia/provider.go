@@ -1,7 +1,7 @@
 package algolia
 
 import (
-	"github.com/algolia/algoliasearch-client-go/algolia/search"
+	"github.com/algolia/algoliasearch-client-go/v3/algolia/search"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 )
