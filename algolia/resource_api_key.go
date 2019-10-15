@@ -3,7 +3,7 @@ package algolia
 import (
 	"errors"
 	"github.com/algolia/algoliasearch-client-go/algolia/search"
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceApiKey() *schema.Resource {

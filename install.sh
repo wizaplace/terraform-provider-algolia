@@ -16,13 +16,17 @@ docker run \
     -e CGO_ENABLED=0 \
     -v ${PROJECT_DIRECTORY}:/app \
     -v ${HOME}/.terraform.d/plugins/linux_amd64:/terraform \
-    -v go-1.12:/go \
+    -v go-1.13:/go \
     -w /app \
-    golang:1.12.9-alpine /bin/sh -c \
+    golang:1.13.1-alpine /bin/sh -c \
     '
         set -xe;
         apk add git;
-        go build -o /terraform/terraform-provider-algolia;
-        chown ${UID}:${GID} /terraform/terraform-provider-algolia;
-        chmod +x /terraform/terraform-provider-algolia
+        TERRAFORM_PLUGIN_NAME=terraform-provider-algolia;
+        if [[ ! -z $(git describe --exact-match --tags HEAD 2> /dev/null) ]]; then \
+            TERRAFORM_PLUGIN_NAME=${TERRAFORM_PLUGIN_NAME}_$(git describe --exact-match --tags HEAD 2> /dev/null); \
+        fi;
+        go build -o /terraform/${TERRAFORM_PLUGIN_NAME};
+        chown ${UID}:${GID} /terraform/${TERRAFORM_PLUGIN_NAME};
+        chmod +x /terraform/${TERRAFORM_PLUGIN_NAME}
     '
