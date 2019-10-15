@@ -2,7 +2,7 @@ version: '2.1'
 executors:
     golang:
         docker:
-            - image: golang:1.12.9-alpine
+            - image: golang:1.13.1-alpine
 
 jobs:
     lint:
@@ -23,13 +23,15 @@ jobs:
         steps:
             - run:
                 name: Install requirements
-                command: apk add git openssh-client gcc musl-dev
+                command: apk add git openssh-client
             - checkout
             - run:
                 name: Download modules
                 command: go mod download
             - run:
                 name: Test
+                environment:
+                    CGO_ENABLED: 0
                 command: go test ./...
 
 workflows:
